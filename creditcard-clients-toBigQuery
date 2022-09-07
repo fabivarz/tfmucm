@@ -1,0 +1,58 @@
+from google.cloud import bigquery
+import fileinput
+
+# Construccion del objeto a bigquery.
+client = bigquery.Client()
+
+table_id = "industrial-keep-360521.marketing.visacampaing"
+
+       
+job_config = bigquery.LoadJobConfig(
+    schema=[
+        bigquery.SchemaField("ID", "STRING", mode="REQUIRED"),
+        bigquery.SchemaField("Year_Birth", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Education", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Income", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Kidhome", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Teenhome", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Dt_Customer", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Recency", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntWines", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntFruits", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntMeatProducts", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntFishProducts", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntSweetProducts", "STRING", mode="Nullable"),
+        bigquery.SchemaField("MntGoldProds", "STRING", mode="Nullable"),
+        bigquery.SchemaField("NumDealsPurchases", "STRING", mode="Nullable"),
+        bigquery.SchemaField("NumWebPurchases", "STRING", mode="Nullable"),
+        bigquery.SchemaField("NumCatalogPurchases", "STRING", mode="Nullable"),
+        bigquery.SchemaField("NumStorePurchases", "STRING", mode="Nullable"),
+        bigquery.SchemaField("NumWebVisitsMonth", "STRING", mode="Nullable"),
+        bigquery.SchemaField("AcceptedCmp3", "STRING", mode="Nullable"),
+        bigquery.SchemaField("AcceptedCmp4", "STRING", mode="Nullable"),
+        bigquery.SchemaField("AcceptedCmp5", "STRING", mode="Nullable"),
+        bigquery.SchemaField("AcceptedCmp1", "STRING", mode="Nullable"),
+        bigquery.SchemaField("AcceptedCmp2", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Complain", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Z_CostContact", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Z_Revenue", "FLOAT", mode="Nullable"),
+        bigquery.SchemaField("Response", "STRING", mode="Nullable")
+    ],
+    skip_leading_rows=0,
+    #max_bad_records=5,
+    allow_jagged_rows=True,
+    ignore_unknown_values=True,
+    #Formato de la fuente es opcional:
+    source_format=bigquery.SourceFormat.CSV,
+)
+
+uri="gs://tfm_ucm_bk/data/marketingcampaing.csv"  
+
+load_job = client.load_table_from_uri(
+    uri, table_id, job_config=job_config
+)  #Hace un API request.
+
+load_job.result()  #Termina trabajo.
+
+destination_table = client.get_table(table_id)  # Make an API request.
+print("Loaded {} rows.".format(destination_table.num_rows))
