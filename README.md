@@ -33,7 +33,7 @@ Fecha: 22/9/2022
 <h3>Contenido:</h3>
 
 <h4>  
-<li>Creación de un pipeline desde el proveedor de Netflix y Disney Channel (Kaggle).<br> 
+<li>Create cluster. Este codigo crea un cluster en GCP (Dataproc).<br> 
 <li>Create creditcard-clients-toBigQuery.Codigo en Python para crear schema y mover datos de CSV desde el GCS Bucket a BigQuery<br> 
 <li>Subida de datos de clientes desde el GCS bucket (data lake) de la empresa Mercadeo EFE Digitals a BigQuery (data warehouse) para su procesamiento previo a campaña digital.
 </h4>
