@@ -34,7 +34,7 @@ Fecha: 22/9/2022
 
 <h4>  
 <li>Creación de un pipeline desde el proveedor de Netflix y Disney Channel (Kaggle).<br> 
-<li>Limpieza y procesamiento de datos de Netflix y Disney Channel con Python/Jupyter Lab.<br> 
+<li>Create creditcard-clients-toBigQuery.Codigo en Python para crear schema y mover datos de CSV desde el GCS Bucket a BigQuery<br> 
 <li>Subida de datos de clientes desde el GCS bucket (data lake) de la empresa Mercadeo EFE Digitals a BigQuery (data warehouse) para su procesamiento previo a campaña digital.
 </h4>
 
