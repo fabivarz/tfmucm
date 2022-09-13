@@ -1,0 +1,18 @@
+import pandas as pd
+import os
+import opendatasets as od
+netflix = "https://www.kaggle.com/datasets/shivamb/netflix-shows"
+
+od.download(netflix)#NETFLIX SHOWS
+dfnetflix = pd.read_csv('netflix-shows/netflix_titles.csv')
+dfnetflix.shape
+dfnetflix.head()
+dfnetflix.isnull().sum() #revision de valores nulos
+#Vamos a quitar las columnas que no ocupamos para el analisis ya que nos interesa conocer nombres de peliculas y ratings para poder promocionarlas mas
+dfnetflix.drop(['director','cast','date_added'],axis = 1,inplace = True)
+#Revisamos el rating de las peliculas y tv shows
+dfnetflix['rating'].value_counts()
+#Vemos graficamente el numero de peliculas y shows para reconocer cual existe en mayor cantidad
+import seaborn as sns #visualizacion
+import matplotlib.pyplot as plt
+sns.countplot(x='type',data = dfnetflix)
