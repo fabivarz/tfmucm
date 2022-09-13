@@ -1,23 +1,30 @@
-!pip install kaggle
-!pip install opendatasets
-
 import pandas as pd
 import os
 import opendatasets as od
 
-netflix = "https://www.kaggle.com/datasets/shivamb/netflix-shows"
 disney = "https://www.kaggle.com/datasets/shivamb/disney-movies-and-tv-shows"
-
-od.download(netflix)#NETFLIX SHOWS
 od.download(disney)#DISNEY SHOWS
 
-dfnetflix = pd.read_csv('netflix-shows/netflix_titles.csv')
-dfnetflix
-
 dfdisney = pd.read_csv('disney-movies-and-tv-shows/disney_plus_titles.csv')
-dfdisney
 
-dfnetflix.info()
+Dfdisney.shape
 
-import numpy as np
-dfnetflix.describe(include=object)
+dfdisney.head()
+
+dfdisney.isnull().sum() #revisión de valores nulos
+
+#Vamos a quitar las columnas que no ocupamos para el analisis ya que nos interesa conocer nombres de peliculas y ratings para poder promocionarlas mas
+dfdisney.drop(['director','cast','date_added'],axis = 1,inplace = True)
+dfdisney.head()
+
+#Revisamos el rating de las peliculas y tv shows
+dfdisney['rating'].value_counts()
+
+#Revisamos cuales son los generos de peliculas/shows que tienen más relevancia y estan de top
+dfdisney['listed_in'].value_counts()
+
+#Vemos graficamente el numero de peliculas y shows para reconocer cual existe en mayor cantidad
+
+import seaborn as sns #visualizacion
+import matplotlib.pyplot as plt
+sns.countplot(x='type',data = dfdisney)
