@@ -1,0 +1,27 @@
+from google.cloud import bigquery
+# Crea objeto cliente
+client = bigquery.Client()
+#Referencia al dataset 
+dataset_ref = client.dataset("ncaa_basketball", project="bigquery-public-data")
+
+# Llamada de API
+dataset = client.get_dataset(dataset_ref)3
+
+tables = list(client.list_tables(dataset))
+
+# Improme el nombre de todas las tablas dentro del dataset, en este caso con 10
+for table in tables:  
+    print(table.table_id)
+    
+#Referencia para llamar la tabla mascotas y su API
+table_ref = dataset_ref.table("mascots")
+
+table = client.get_table(table_ref)
+
+# Imprime el esquema de la tabla mascota
+table.schema
+
+# Prevista de la tabla
+client.list_rows(table, max_results=5).to_dataframe()
+# Prevista de la tabla
+client.list_rows(table, selected_fields=table.schema[:20], max_results=5).to_dataframe()
