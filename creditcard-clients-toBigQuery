@@ -12,6 +12,7 @@ job_config = bigquery.LoadJobConfig(
         bigquery.SchemaField("ID", "STRING", mode="REQUIRED"),
         bigquery.SchemaField("Year_Birth", "STRING", mode="Nullable"),
         bigquery.SchemaField("Education", "STRING", mode="Nullable"),
+        bigquery.SchemaField("Marital_Status", "STRING", mode="Nullable"),
         bigquery.SchemaField("Income", "STRING", mode="Nullable"),
         bigquery.SchemaField("Kidhome", "STRING", mode="Nullable"),
         bigquery.SchemaField("Teenhome", "STRING", mode="Nullable"),
@@ -35,13 +36,15 @@ job_config = bigquery.LoadJobConfig(
         bigquery.SchemaField("AcceptedCmp2", "STRING", mode="Nullable"),
         bigquery.SchemaField("Complain", "STRING", mode="Nullable"),
         bigquery.SchemaField("Z_CostContact", "STRING", mode="Nullable"),
-        bigquery.SchemaField("Z_Revenue", "FLOAT", mode="Nullable"),
+        bigquery.SchemaField("Z_Revenue", "STRING", mode="Nullable"),
         bigquery.SchemaField("Response", "STRING", mode="Nullable")
     ],
-    skip_leading_rows=0,
-    #max_bad_records=5,
+    skip_leading_rows=1,
+    #max_bad_records=10,
     allow_jagged_rows=True,
     ignore_unknown_values=True,
+    nullMarker=True,
+    field_delimiter=";",
     #Formato de la fuente es opcional:
     source_format=bigquery.SourceFormat.CSV,
 )
