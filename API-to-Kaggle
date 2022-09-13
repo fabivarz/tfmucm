@@ -1,0 +1,23 @@
+!pip install kaggle
+!pip install opendatasets
+
+import pandas as pd
+import os
+import opendatasets as od
+
+netflix = "https://www.kaggle.com/datasets/shivamb/netflix-shows"
+disney = "https://www.kaggle.com/datasets/shivamb/disney-movies-and-tv-shows"
+
+od.download(netflix)#NETFLIX SHOWS
+od.download(disney)#DISNEY SHOWS
+
+dfnetflix = pd.read_csv('netflix-shows/netflix_titles.csv')
+dfnetflix
+
+dfdisney = pd.read_csv('disney-movies-and-tv-shows/disney_plus_titles.csv')
+dfdisney
+
+dfnetflix.info()
+
+import numpy as np
+dfnetflix.describe(include=object)
