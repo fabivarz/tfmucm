@@ -1,0 +1,5 @@
+gcloud beta dataproc clusters create tfmcluster --enable-component-gateway --bucket tfm_ucm_bk --region europe-west1 
+--zone europe-west1-c --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 
+--worker-boot-disk-size 500 --image-version 1.4-debian10 --properties ^#^spark:spark.jars.repositories=https://repos.spark-packages.org/#spark:spark.jars.
+packages=graphframes:graphframes:0.7.0-spark2.4-s_2.11,org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.0 --optional-components ANACONDA,JUPYTER,ZOOKEEPER 
+--max-age 30000s --initialization-actions 'gs://goog-dataproc-initialization-actions-europe-west1/kafka/kafka.sh' --project industrial-keep-360521
