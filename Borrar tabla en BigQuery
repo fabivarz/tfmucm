@@ -1,0 +1,12 @@
+from google.cloud import bigquery
+
+# Construct a BigQuery client object.
+client = bigquery.Client()
+
+# TODO(developer): Set table_id to the ID of the table to fetch.
+table_id = "industrial-keep-360521.marketing.visacampaing"
+
+# If the table does not exist, delete_table raises
+# google.api_core.exceptions.NotFound unless not_found_ok is True.
+client.delete_table(table_id, not_found_ok=True)  # Make an API request.
+print("Deleted table '{}'.".format(table_id))
